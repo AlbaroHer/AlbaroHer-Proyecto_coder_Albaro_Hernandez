@@ -1,0 +1,56 @@
+{% extends "project_app/template/project_app/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    {% for post in posts %}
+
+    <section class="page-section clearfix">
+        <div class="container">
+          <div class="intro">
+            <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{post.imagen.url}}" alt="" style="width:50%;">
+            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+              <h2 class="section-heading left-0 text-center mb-4" >
+                <span class="section-heading-lowerr text-center">{{post.titulo}}</span>
+              </br>
+            </br>
+                <span class="section-heading-upper">{{post.contenido}}</span>
+              </h2> 
+            <div style="text-align: left; font-size: 0.8em">
+             
+                Autor&nbsp;:&nbsp;&nbsp;{{post.autor}}
+
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    {% endfor %}
+
+    <section>
+
+        <div style="width:75%; margin: auto; text-align: center; color: white;"> 
+
+        Categorias: &nbsp;
+
+        {% for post in posts %}
+
+            {% for categoria in post.categorias.all %}
+
+            <a style="color: white;"href="{% url 'categoria' categoria.id %}">{{categoria.nombre}}</a> &nbsp;
+
+                {% endfor %} 
+
+        {% endfor %}
+
+        </div>
+
+    </section>
+
+
+
+{% endblock %}
